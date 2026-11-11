@@ -1,5 +1,7 @@
 # SMART Info Native
 
+**简体中文** | [English](README.en.md)
+
 macOS 原生（SwiftUI）磁盘 SMART 信息查看器。通过 `diskutil` 列举物理磁盘，调用 [smartmontools](https://www.smartmontools.org/) 7.5 的 `smartctl -x --json=ov`，把 NVMe / ATA 的完整 SMART 数据以中文表格呈现。
 
 **只读工具**：不运行自检、不修改磁盘、不安装内核扩展。缺失数据一律显示为「不可用」，不会补零或臆测。
