@@ -1,0 +1,24 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+*.swp
+
+# 构建产物（由 build.sh / build-engine.sh 生成，不入库）
+Build/
+Build-*/
+EngineWork/
+Engine/
+Release/
+*.app/
+*.icns
+MakeIcon
+SMARTTests
+module-cache/
+*.swiftmodule
+*.o
+
+# 本地编辑器 / 环境
+.idea/
+.vscode/
+*.xcodeproj/

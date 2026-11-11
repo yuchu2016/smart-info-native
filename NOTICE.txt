@@ -1,0 +1,27 @@
+SMART Info Native 1.1.3
+
+Version 1.1.3 expands sidebar disk selection to the entire 240-point-wide row, with a minimum 100-point height, including blank space and padding. SMART presentation, read-only reporting and row virtualization are unchanged.
+
+Version 1.1.2 replaces eager SwiftUI SMART detail layout with a bounded reusable native table. Immutable per-disk presentations and row heights are prepared on the disk-reading worker, including exact values, all ATA fields and both masked/unmasked output. Every group remains expanded. Fixed column widths allow complete wrapped text and horizontal scrolling without measuring hundreds of rows during selection. Output can be copied in full; identifiers remain hidden by default.
+
+Version 1.1.1 removes decorative slogans and repetitive guidance from the UI. All SMART fields, technical definitions, units, thresholds, raw data, and error reporting are retained.
+
+Version 1.1 includes fully expanded NVMe/ATA detail tables, Chinese descriptions, units, device thresholds, per-bit critical warnings, all eight optional temperature sensors, thermal management counters, exact counter strings, and flattened supplementary protocol fields. Only fields actually returned can be read; missing values are explicitly shown as unavailable. Unknown vendor-specific fields are preserved without invented interpretations.
+The read command is smartctl -x --json=ov (extended read-only reporting, original text output and exact integer strings). Thermal management counters omitted from upstream 7.5 JSON are recovered from the preserved text output, without changing the engine.
+SMART field references: smartmontools 7.5 nvmeprint.cpp and smartctl.8.in in the bundled source archive; https://learn.microsoft.com/zh-cn/windows/win32/api/nvme/ns-nvme-nvme_health_info_log
+ATA descriptions apply to the reported attribute names, not solely to numeric IDs, and remain subject to vendor-specific encoding.
+
+
+The Swift application UI and SMART data normalization code were independently implemented for this local project. The application does not use the original SMART Info Flutter code or binary assets.
+The application source is provided under GNU General Public License version 2. See COPYING.
+
+The bundled smartctl executable is built from the official smartmontools 7.5 release, dated 2025-04-30, revision r5714.
+Upstream: https://www.smartmontools.org/
+Source distribution: https://downloads.sourceforge.net/project/smartmontools/smartmontools/7.5/smartmontools-7.5.tar.gz
+Copyright (C) 2002-2025 Bruce Allen, Christian Franke, and smartmontools contributors. Licensed under GNU GPL version 2; see Engine/COPYING.
+The unmodified corresponding upstream source archive is included at Engine/smartmontools-7.5.tar.gz. The executable embeds the upstream drive database using --with-drivedbdir=no.
+Build instructions are encoded in build-engine.sh (engine) and build.sh (application/tests); both use the Xcode macOS SDK. No privileged installation step is performed.
+
+This application reads disk information and SMART data only. It does not run destructive tests, modify filesystems, install kernel extensions, or install Rosetta. Missing data is shown as unknown rather than zero. Health status is a heuristic and is not a guarantee against disk failure. Keep independent backups.
+
+Distribution scope: locally built ARM64 macOS 13+ application, ad-hoc code signature. No Apple Developer ID signing or notarization was performed. Physical USB bridge compatibility depends on macOS, firmware, drivers, and the smartmontools backend. USB/SATA support has parser tests but no live USB/SATA validation in this build session.
